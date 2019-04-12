@@ -12,7 +12,7 @@ from IPython.display import Image
 # Data Study
 source = pd.read_csv('pitches.csv')
 pd.set_option('display.max_columns', 18)
-#print(source.head())
+print(source.head())
 #print(source.tail(5))
 #print(source.columns.values)
 
