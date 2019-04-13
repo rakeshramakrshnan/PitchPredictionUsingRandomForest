@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
+from sklearn.metrics import classification_report
 from sklearn.externals.six import StringIO
 from sklearn.tree import export_graphviz
 import pydotplus
@@ -70,12 +71,7 @@ clf = DecisionTreeClassifier()
 clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 print("Decision Tree Accuracy:", metrics.accuracy_score(y_test, y_pred))
-
-# Random Forest Model
-rfc = RandomForestClassifier(n_estimators=10)
-rfc = rfc.fit(X_train, y_train)
-y_pred = rfc.predict(X_test)
-print("Random Forest Accuracy:", metrics.accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 
 # View the decision tree
 pydot = StringIO()
@@ -85,4 +81,11 @@ graph = pydotplus.graph_from_dot_data(pydot.getvalue())
 graph.write_png('DecisionTree.png')
 Image(graph.create_png())
 print("Decision Tree Created")
+
+# Random Forest Model
+rfc = RandomForestClassifier(n_estimators=10)
+rfc = rfc.fit(X_train, y_train)
+y_pred = rfc.predict(X_test)
+print("Random Forest Accuracy:", metrics.accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 
